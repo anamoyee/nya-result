@@ -1,0 +1,18 @@
+[project]
+name = 'nya-result'
+dynamic = ['version']
+description = 'provide a yet another rust-like `Result` implementation'
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+# [project.scripts]
+# nya_result = "nya_result.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/nya_result/_version.py"
+pattern = '__version__(?:: str)? *= *\"(?P<version>[^\"]+)\"'
