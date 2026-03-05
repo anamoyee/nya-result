@@ -15,7 +15,7 @@ repos:
         name: pytest-check
         stages: [pre-commit]
         types: [python]
-        entry: pytest
+        entry: ".venv/bin/pytest"
         language: system
         pass_filenames: false
         always_run: true
