@@ -1,6 +1,5 @@
 import pytest
 from nya_result import ResultDirect as _RD
-from nya_result._base import ResultUnwrappedErrOnValueError, ResultUnwrappedOnErrorError
 
 
 def test_unwrap_on_ok_returns_value():

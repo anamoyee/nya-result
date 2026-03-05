@@ -1,19 +1,24 @@
 import abc
 from collections.abc import Callable
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, Literal, Self, TypeVar, overload
+from typing import Literal, Self, TypeVar, overload
+
+from nya_scope import Scope
 
 Default = TypeVar("Default")
 
 
-@dataclass
-class ResultUnwrappedOnErrorError(Exception):
-	"""An unwrap() was called on a Result containing an error."""
+class Error__(Scope):
+	class BaseNyaResultError(Exception):
+		"""Base class for all errors raised by this library."""
 
+		def __init__(self) -> None:
+			super().__init__()
 
-@dataclass
-class ResultUnwrappedErrOnValueError(Exception):
-	"""An unwrap_err() was called on a Result contaning a value."""
+	class ResultUnwrappedOnErrorError(BaseNyaResultError):
+		"""An unwrap() was called on a Result containing an error."""
+
+	class ResultUnwrappedErrOnValueError(BaseNyaResultError):
+		"""An unwrap_err() was called on a Result contaning a value."""
 
 
 class _ResultBase[OkT, ErrT: BaseException = BaseException](abc.ABC):
@@ -65,9 +70,9 @@ class _ResultBase[OkT, ErrT: BaseException = BaseException](abc.ABC):
 		return self._is_err == other._is_err and self._value == other._value
 
 	def unwrap_err(self) -> ErrT:
-		"""If the result contains a value, raise `ResultUnwrappedErrOnValueError()`, else return the error."""
+		"""If the result contains a value, raise `Errors__.ResultUnwrappedErrOnValueError()`, else return the error."""
 		if not self._is_err:
-			raise ResultUnwrappedErrOnValueError()
+			raise Error__.ResultUnwrappedErrOnValueError()
 
 		return self._value  # type: ignore # <- due to `if` guarantee
 
@@ -136,8 +141,8 @@ class _ResultBase[OkT, ErrT: BaseException = BaseException](abc.ABC):
 		return self._value  # type: ignore # <- due to `if` guarantee
 
 	def unwrap_indirect(self) -> OkT:
-		"""If the result contains an error, raise `ResultUnwrappedOnErrorError()`, else return the value."""
+		"""If the result contains an error, raise `Errors__.ResultUnwrappedOnErrorError()`, else return the value."""
 		if self._is_err:
-			raise ResultUnwrappedOnErrorError() from self._value  # type: ignore # <- due to `if` guarantee
+			raise Error__.ResultUnwrappedOnErrorError() from self._value  # type: ignore # <- due to `if` guarantee
 
 		return self._value  # type: ignore # <- due to `if` guarantee

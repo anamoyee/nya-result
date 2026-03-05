@@ -2,7 +2,7 @@ from math import e
 
 import pytest
 from nya_result import ResultIndirect as _RI
-from nya_result._base import ResultUnwrappedOnErrorError
+from nya_result import Error__
 
 
 def test_unwrap_on_ok_returns_value():
@@ -16,7 +16,7 @@ def test_unwrap_on_err_raises_wrapper_error():
 	result = _RI.new_err(error)
 
 	# unwrap() should behave like unwrap_indirect(), raising ResultUnwrappedOnErrorError
-	with pytest.raises(ResultUnwrappedOnErrorError) as exc:
+	with pytest.raises(Error__.ResultUnwrappedOnErrorError) as exc:
 		result.unwrap()
 
 	# the original error should be the __cause__

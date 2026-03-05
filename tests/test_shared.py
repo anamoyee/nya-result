@@ -1,13 +1,10 @@
 from typing import Any
 
 import pytest
+from nya_result import Error__
 from nya_result import ResultDirect as _RD
 from nya_result import ResultIndirect as _RI
-from nya_result._base import (
-	ResultUnwrappedErrOnValueError,
-	ResultUnwrappedOnErrorError,
-	_ResultBase,
-)
+from nya_result._base import _ResultBase
 
 
 @pytest.fixture(params=[_RD, _RI])
@@ -49,7 +46,7 @@ def test_new_ok_sets_value_state(Result):
 def test_unwrap_err_on_value_raises(Result):
 	result = Result.new_ok(1)
 
-	with pytest.raises(ResultUnwrappedErrOnValueError):
+	with pytest.raises(Error__.ResultUnwrappedErrOnValueError):
 		result.unwrap_err()
 
 
@@ -195,7 +192,7 @@ def test_unwrap_indirect_raises_on_error(Result):
 	result = Result.new_err(err)
 
 	if result.is_err:
-		with pytest.raises(ResultUnwrappedOnErrorError) as exc:
+		with pytest.raises(Error__.ResultUnwrappedOnErrorError) as exc:
 			result.unwrap_indirect()
 		assert exc.value.__cause__ is err
 	else:

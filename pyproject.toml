@@ -4,7 +4,9 @@ dynamic = ['version']
 description = 'provide a yet another rust-like `Result` implementation'
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "nya-scope>=0.2.1",
+]
 
 # [project.scripts]
 # nya_result = "nya_result.__main__:main"

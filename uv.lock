@@ -170,6 +170,9 @@ wheels = [
 [[package]]
 name = "nya-result"
 source = { editable = "." }
+dependencies = [
+    { name = "nya-scope" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -179,12 +182,22 @@ dev = [
 ]
 
 [package.metadata]
+requires-dist = [{ name = "nya-scope", specifier = ">=0.2.1" }]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "mypy", specifier = ">=1.19.1" },
     { name = "pre-commit", specifier = ">=4.5.1" },
     { name = "pytest", specifier = ">=9.0.2" },
+]
+
+[[package]]
+name = "nya-scope"
+version = "0.2.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4b/03/5c3b19eae5636597b6d00798b200435412adde9cb6718a42d2542999b1c9/nya_scope-0.2.1.tar.gz", hash = "sha256:87d09d7eed6fa57c11a6391013ed8bb0d4aa9bd04b7dc4ab895dd3d5bf1e4035", size = 4321, upload-time = "2026-02-15T00:57:30.258Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7c/fb/26f5be38295a6f79863d3699cfba698d55f11a70cb0b80ecadda63a75ffe/nya_scope-0.2.1-py3-none-any.whl", hash = "sha256:bdd97e18de85f410a077fc97fc5a6caf167fdebb8a1352608492f4c62af57824", size = 2631, upload-time = "2026-02-15T00:57:29.437Z" },
 ]
 
 [[package]]
