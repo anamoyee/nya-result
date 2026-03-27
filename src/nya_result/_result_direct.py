@@ -2,7 +2,7 @@ from collections.abc import Callable, Coroutine
 from functools import wraps
 from typing import Any
 
-from ._base import _ResultBase
+from ._result_base import _ResultBase
 
 
 class ResultDirect[Ok, Err: BaseException = BaseException](_ResultBase[Ok, Err]):

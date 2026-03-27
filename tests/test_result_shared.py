@@ -4,7 +4,7 @@ import pytest
 from nya_result import Error__
 from nya_result import ResultDirect as _RD
 from nya_result import ResultIndirect as _RI
-from nya_result._base import _ResultBase
+from nya_result._result_base import _ResultBase
 
 
 @pytest.fixture(params=[_RD, _RI])
