@@ -21,7 +21,7 @@ class Error__(Scope):
 		"""An unwrap_err() was called on a Result contaning a value."""
 
 
-class _ResultBase[OkT, ErrT: BaseException = BaseException](abc.ABC):
+class _ResultBase[OkT, ErrT: BaseException](abc.ABC):
 	_value: OkT | ErrT
 	_is_err: bool
 

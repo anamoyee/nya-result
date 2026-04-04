@@ -5,7 +5,7 @@ from typing import Any
 from ._result_base import _ResultBase
 
 
-class ResultIndirect[Ok, Err: BaseException = BaseException](_ResultBase[Ok, Err]):
+class ResultIndirect[Ok, Err: BaseException](_ResultBase[Ok, Err]):
 	def unwrap(self) -> Ok:
 		"""If the result contains an error, raise `ResultUnwrappedOnErrorError()`, else return the value (On `Result` alias to `.unwrap_indirect()`)."""
 		return self.unwrap_indirect()
